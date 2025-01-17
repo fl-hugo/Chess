@@ -2,7 +2,7 @@
 # Project Chess
 Welcome to Chess
 
-<img src="./Ressources\images\chess.png" with="800" />
+<img src="./ressources\images\chess.png" with="800" />
 
 
 
