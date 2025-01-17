@@ -56,7 +56,7 @@ def charger_images():
     pieces = {}
     for couleur in ['blanc', 'noir']:
         for piece in ['pion', 'tour', 'cavalier', 'fou', 'dame', 'roi']:
-            chemin = f"Images/{couleur}_{piece}.png"
+            chemin = f"./ressources/Images/{couleur}_{piece}.png"
             if os.path.exists(chemin):
                 image = pygame.image.load(chemin)
                 image = pygame.transform.scale(image, (TAILLE_CASE, TAILLE_CASE))
