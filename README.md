@@ -42,7 +42,7 @@ Chess is a strategic board game that pits two players against each other on a 64
 The aim of the game is to put the opponent's king in checkmate, which means that he is inevitably attacked and can no longer escape capture. This marks the end of the game and the victory of the attacking player.
 
 
-
+ 
 # Version 🗃️
 
 - pygame 2.6.1

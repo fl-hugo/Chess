@@ -66,7 +66,6 @@ def charger_images():
     return pieces
 
 def piece_to_key(piece):
-    """Convertit une pièce python-chess en clé pour le dictionnaire d'images"""
     couleur = "blanc" if piece.color else "noir"
     nom = {
         chess.PAWN: "pion",
