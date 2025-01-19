@@ -31,15 +31,3 @@ def charger_sons():
         else:
             print(f"Fichier audio non trouvé: {chemin}")
     return sons
-
-def piece_to_key(piece):
-    couleur = "blanc" if piece.color else "noir"
-    noms = {
-        chess.PAWN: "pion",
-        chess.ROOK: "tour",
-        chess.KNIGHT: "cavalier",
-        chess.BISHOP: "fou",
-        chess.QUEEN: "dame",
-        chess.KING: "roi",
-    }
-    return f"{couleur}_{noms[piece.piece_type]}"
