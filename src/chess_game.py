@@ -3,6 +3,7 @@ import pygame
 from config import TAILLE_CASE, FENETRE, BLANC, NOIR, SURBRILLANCE, SURBRILLANCE_SELECTION
 import chess
 import time
+from problems import ProblemeEchecs
 
 def charger_images():
     pieces = {}
@@ -54,6 +55,16 @@ class JeuEchecs:
         self.case_selectionnee = None
         self.coups_possibles = []
         self.partie_terminee = False
+        self.mode_probleme = False
+        self.problemes = ProblemeEchecs()
+
+    def demarrer_probleme(self):
+        self.mode_probleme = True
+        probleme = self.problemes.obtenir_probleme_actuel()
+        self.plateau = chess.Board(probleme['fen'])
+        self.case_selectionnee = None
+        self.coups_possibles = []
+        self.partie_terminee = False
 
     def jouer_son(self, action):
         if action in self.sons:
@@ -102,17 +113,27 @@ class JeuEchecs:
         if self.case_selectionnee is not None:
             if case in self.coups_possibles:
                 mouvement = chess.Move(self.case_selectionnee, case)
-                piece = self.plateau.piece_at(self.case_selectionnee)
-                if piece.piece_type == chess.PAWN and chess.square_rank(case) in [0, 7]:
-                    couleur = "blanc" if piece.color else "noir"
-                    mouvement.promotion = self.afficher_menu_promotion(couleur)
-                if mouvement in self.plateau.legal_moves:
-                    if self.plateau.is_capture(mouvement):
-                        self.jouer_son("capture")
+                if self.mode_probleme:
+                    if self.problemes.verifier_coup(mouvement.uci()):
+                        self.plateau.push(mouvement)
+                        if self.problemes.est_resolu():
+                            self.afficher_animation_victoire("Problème résolu !")
+                            self.problemes.probleme_suivant()
+                            self.demarrer_probleme()
                     else:
-                        self.jouer_son("move")
-                    self.plateau.push(mouvement)
-                    self.verifier_fin_partie()
+                        self.demarrer_probleme()  
+                else:
+                    piece = self.plateau.piece_at(self.case_selectionnee)
+                    if piece.piece_type == chess.PAWN and chess.square_rank(case) in [0, 7]:
+                        couleur = "blanc" if piece.color else "noir"
+                        mouvement.promotion = self.afficher_menu_promotion(couleur)
+                    if mouvement in self.plateau.legal_moves:
+                        if self.plateau.is_capture(mouvement):
+                            self.jouer_son("capture")
+                        else:
+                            self.jouer_son("move")
+                        self.plateau.push(mouvement)
+                        self.verifier_fin_partie()
                 self.case_selectionnee = None
                 self.coups_possibles = []
             else:
@@ -123,6 +144,7 @@ class JeuEchecs:
             if piece and piece.color == self.plateau.turn:
                 self.case_selectionnee = case
                 self.coups_possibles = [move.to_square for move in self.plateau.legal_moves if move.from_square == case]
+
 
     def verifier_fin_partie(self):
         if self.plateau.is_checkmate():

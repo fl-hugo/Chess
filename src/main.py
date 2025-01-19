@@ -10,13 +10,13 @@ def main():
     jeu = JeuEchecs()
 
     boutons = []
-    largeur_bouton = 170
+    largeur_bouton = 120
     hauteur_bouton = 50
     espace = 15
-    x_offset = (LARGEUR - (2 * largeur_bouton + espace)) // 2
+    x_offset = (LARGEUR - (3 * largeur_bouton + 2 * espace)) // 2
     y_offset = LARGEUR_PLATEAU + (HAUTEUR_INTERFACE - hauteur_bouton) // 2
 
-    for i, texte in enumerate(["Recommencer", "Quitter"]):
+    for i, texte in enumerate(["Recommencer", "Problèmes", "Quitter"]):
         rect = pygame.Rect(x_offset + i * (largeur_bouton + espace), y_offset, largeur_bouton, hauteur_bouton)
         boutons.append((rect, texte))
 
@@ -31,6 +31,8 @@ def main():
                         if rect.collidepoint(event.pos):
                             if action == "Recommencer":
                                 jeu = JeuEchecs()
+                            elif action == "Problèmes":
+                                jeu.demarrer_probleme()
                             elif action == "Quitter":
                                 pygame.quit()
                                 sys.exit()
