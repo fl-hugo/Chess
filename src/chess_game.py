@@ -1,14 +1,19 @@
 import chess
 from config import FENETRE, TAILLE_CASE, BLANC, NOIR, SURBRILLANCE, SURBRILLANCE_SELECTION
-from assets import charger_images, piece_to_key
+from assets import charger_images, piece_to_key, charger_sons
 import pygame
 
 class JeuEchecs:
     def __init__(self):
         self.plateau = chess.Board()
         self.images = charger_images()
+        self.sons = charger_sons()
         self.case_selectionnee = None
         self.coups_possibles = []
+
+    def jouer_son(self, action):
+        if action in self.sons:
+            self.sons[action].play()
 
     def obtenir_position_souris(self, pos):
         x, y = pos
@@ -18,10 +23,15 @@ class JeuEchecs:
 
     def gerer_clic_plateau(self, pos):
         case = self.obtenir_position_souris(pos)
+
         if self.case_selectionnee is not None:
             if case in self.coups_possibles:
                 mouvement = chess.Move(self.case_selectionnee, case)
                 if mouvement in self.plateau.legal_moves:
+                    if self.plateau.is_capture(mouvement):
+                        self.jouer_son("capture")
+                    else:
+                        self.jouer_son("move")
                     self.plateau.push(mouvement)
                 self.case_selectionnee = None
                 self.coups_possibles = []
