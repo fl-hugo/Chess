@@ -17,7 +17,7 @@ class ProblemeEchecs:
         'solution': ['e1e8']  
     },
     {
-        'nom': 'Mat avec cavalier',
+        'nom': 'Mat avec fou',
         'fen': 'r3q1kr/ppNnb1pp/5n2/8/8/8/PPP2PPP/R1BQKB1R w - - 0 1',
         'solution': ['f1c4']  
     },
