@@ -3,7 +3,7 @@ class ProblemeEchecs:
         self.problemes = [
             {
         'nom': 'Mat avec la dame en un coup',
-        'fen': '6kp/6p1/6K1/8/8/8/8/5Q2 w - - 0 1',
+        'fen': '6kr/6p1/6K1/8/8/8/8/5Q2 w - - 0 1',
         'solution': ['f1f7']  
     },
     {
@@ -17,9 +17,9 @@ class ProblemeEchecs:
         'solution': ['e1e8']  
     },
     {
-        'nom': 'Mat avec fou',
-        'fen': 'r3q1kr/ppNnb1pp/5n2/8/8/8/PPP2PPP/R1BQKB1R w - - 0 1',
-        'solution': ['f1c4']  
+        'nom': 'Mat avec cavalier',
+        'fen': '6rk/6pp/8/4N3/8/8/bPP5/2K4R w - - 0 1',
+        'solution': ['e5g6']  
     },
             
         ]
