@@ -12,14 +12,14 @@ class ProblemeEchecs:
         'solution': ['h5f7']  
     },
     {
-        'nom': 'Mat avec en passant',
+        'nom': 'Mat tour',
         'fen': '6k1/5pp1/7p/8/PP6/q1P5/2B2PPP/4RK2 w - - 0 1',
         'solution': ['e1e8']  
     },
     {
         'nom': 'Mat avec cavalier',
-        'fen': '8/5RPk/6N1/6K1/8/8/8/8 w - - 0 1',
-        'solution': ['g6f8']  
+        'fen': 'r3q1kr/ppNnb1pp/5n2/8/8/8/PPP2PPP/R1BQKB1R w - - 0 1',
+        'solution': ['f1c4']  
     },
             
         ]
