@@ -10,7 +10,7 @@ def main():
     jeu = JeuEchecs()
 
     boutons = []
-    largeur_bouton = 120
+    largeur_bouton = 150
     hauteur_bouton = 50
     espace = 15
     x_offset = (LARGEUR - (3 * largeur_bouton + 2 * espace)) // 2
